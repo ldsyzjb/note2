@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>订阅发布模式</title>
+</head>
+<body>
+    <script>
+        let bus = {
+            pool:{},
+            on(eventType, callback){
+                this.pool[eventType] = this.pool[eventType] || [];
+                this.pool[eventType].push(callback)
+            },
+            emit(eventType, data){
+                if(this.pool[eventType].length > 0) {
+                    this.pool[eventType].forEach(function(cb){
+                        cb(data);
+                    })
+                }
+            },
+            off(eventType, callback){
+                if(this.pool[eventType].length > 0){
+                    let index = this.pool[eventType].indexOf(callback);
+                    this.pool[eventType].splice(index,1);
+                }
+            }
+        }    
+        let say = (data)=>console.log('one',data)
+        bus.on('one', say)
+        bus.emit('one', 'hello,world');
+        bus.off('one', say)
+        bus.emit('one', 'second time')
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./src/vue.js"></script>
+    <script src="./src/index.js"></script>
+    <script src="./config.js"></script>
+    <link rel="stylesheet" href="./src/index.css">
+</head>
+<body>
+    <div id="root">
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+            <el-tab-pane v-for="mode in designModeList" :label="mode.name" :key="mode.name  " :name="mode.name">
+            </el-tab-pane>
+        </el-tabs> 
+
+
+    </div>
+    <script>
+        let designModeList = window.designModeList;
+        Vue.use(ELEMENT);
+        new Vue({
+            el: '#root',
+            data: {
+                designModeList,
+                activeName: '',
+                iframe: null
+            },
+            methods:{
+                handleClick(e){
+                    let iframe = this.iframe || (this.iframe = document.createElement('iframe'), document.body.appendChild(this.iframe));
+                    iframe.src = `./${this.activeName}.html`;
+
+                }
+            }
+        })
+
+    </script>
+    <style>
+        iframe{
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</body>
+</html>

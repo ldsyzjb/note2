@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Iterator</title>
+</head>
+<body>
+<pre>
+    在es6中，数组，set，map有内建迭代器entries, keys, values。会返回一个迭代器对象；
+    例：
+        [1,2,43,6,65,56].entries()
+    
+    迭代器对象除了next方法，还具有return 和 throw 方法
+
+</pre>
+    <script>
+        function createIterator(target){
+            if( target instanceof Array){
+                let index = 0;
+                return {
+                    next(){
+                        let done = index < target.length ? false : true;
+                        let value = done ? undefined : target[index++];
+                        return { done, value}
+                    }
+                }
+            }
+        }       
+        let iterator = createIterator([1,2,3,45,67,8]);
+        let obj = {
+            a: 'obj',
+            [Symbol.iterator]: () => iterator
+        }
+        for(let i of obj){
+            console.log(i)
+        }
+    </script>
+</body>
+</html>
