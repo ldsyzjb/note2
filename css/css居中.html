@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS 居中</title>
+    <link rel="stylesheet" href="./style/css-center.css">
+</head>
+<body>
+    <ul></ul>
+    <div id="" class="parent">
+        <div class="child">
+            child
+        </div>
+    </div>
+    <script>
+        let ul = document.querySelector('ul');
+        let frag = document.createDocumentFragment();
+        let root = document.querySelector('.parent');
+        let list = {
+            none: 'none',
+            flex: 'flex',
+            absolute: 'absolute+margin',
+            // margin: 'margin',
+            transform: 'absolute+transform',
+            tablecell: 'table cell'
+        }
+        for(let i in list){
+            let li = document.createElement('li');
+            li.setAttribute('data-name',i)
+            li.innerHTML = list[i];
+            frag.appendChild(li)
+        }
+        ul.appendChild(frag);
+        ul.addEventListener('click', function(e){
+            let el = e.target;
+            root.id = el.dataset.name;
+        })
+    
+    
+    </script>
+</body>
+</html>

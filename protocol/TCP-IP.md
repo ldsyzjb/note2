@@ -25,5 +25,5 @@
 
 
 
-[tcp-break]:./tcp-break.png
-[tcp-establish]:./tcp-establish.png
+[tcp-break]:./imgs/tcp-break.png
+[tcp-establish]:./imgs/tcp-establish.png
