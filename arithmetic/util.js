@@ -1,7 +1,11 @@
+
+// 生成一个length长度的数组，填充1-100的随机数
 function newArray(length){
     return new Array(length).fill(0).map( i => Math.floor(Math.random()*100));
 }
 
+
+// function, times, array-length
 function test(func, times=20, length=1000){
     let err = 0;
         console.time('test ');
@@ -19,9 +23,12 @@ function test(func, times=20, length=1000){
     console.log(err +  ' / ' + times)
 }
 
+// 交换数组arr中i和j的位置
 function swap(arr, i, j){
     [arr[i], arr[j]] = [arr[j], arr[i]]
 }
+
+// 对html特殊字符进行转义
 function escapeHtml(text) {
     var map = { 
         '<': '&lt;',
@@ -32,6 +39,8 @@ function escapeHtml(text) {
 
     return text.replace(/[<>"']/g, function(m) { return map[m]; });
 }
+
+// 将selector标签的内容，渲染到body下，新的id为newid
 let render = (function(){
     let keyWord = ["break","else","new","var","case","finally","return","void","catch","for","switch","while","continue","function","this","with","default","if","throw","delete","in","try","do","instranceof","typeof","abstract","enum","int","short","boolean","export","interface","static","byte","extends","long","super","char","final","native","synchronized","class","float","package","throws","const","goto","private","transient","debugger","implements","protected","volatile","double","import","public"];
 

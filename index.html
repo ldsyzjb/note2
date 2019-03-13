@@ -1,0 +1,23 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/wangeditor/release/wangEditor.min.js"></script>
+    <script src="./lib/jquery.js"></script>
+</head>
+<body>
+    <div class="toolbar"></div>
+    <div class="editor"></div>
+    <style>
+        .toolbar{ border: 1px solid lightblue}
+        .editor{ border: 1px solid lightblue; margin-top: 30px;}
+    </style>
+    <script>
+        let E = window.wangEditor;
+        let editor = new E('.toolbar','.editor')
+        editor.create();
+    </script>
+</body>
+</html>

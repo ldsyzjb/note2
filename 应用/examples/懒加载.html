@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>懒加载</title>
+    <style>
+        div{ height: 300px; width: 100%; background: gray}
+        div:nth-child(odd){ background: green}
+    </style>
+</head>
+<body>
+    <script>
+        let createEl = type => document.createElement(type);
+        let frag = document.createDocumentFragment();
+        function getTopDistance(el){
+            return el.offsetParent ? el.offsetTop + getTopDistance(el.offsetParent) : 0;
+        }
+        function createObserver(cb){
+            if(!window.IntersectionObserver){
+                return new IntersectionObserver(cb, {rootMargin: '30px'})
+            }else{
+
+                return {
+                    observe(el){
+                        let top_view = getTopDistance(el);
+                        let window_height = window.innerHeight;
+                        window.addEventListener('scroll', function(e){
+                            let scroll_top = document.body.scrollTop;
+                            if( top_view < window_height + scroll_top){
+                                cb();
+                            }
+                        });
+                    },
+                    unobserve(el){
+
+                    }
+                }
+            }
+        }
+        let observer = createObserver(()=> console.log('in section'));
+        for(let i=0; i<20; i++){
+            let div = createEl('div');
+            div.innerHTML = i;
+            frag.appendChild(div);
+            if( i==5){
+                observer.observe(div)
+            }
+        }   
+        document.body.appendChild(frag);
+    
+    </script>
+</body>
+</html> 

@@ -1,3 +1,6 @@
+body{
+  background: red;
+}
 ul {
   display: flex;
   list-style: none; }
